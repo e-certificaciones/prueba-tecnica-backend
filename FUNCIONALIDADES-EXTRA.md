@@ -1,20 +1,29 @@
 # Funcionalidades extra correspondiente al enfasis del entrevistador
 
-El entrevistador pidio demostrar criterio, proactividad y cosas que se podrian mejorar.
+El entrevistador pidio demostrar criterio, proactividad, cosas que se podrian mejorar y de que manera los desarrolladores deben adaptarse a las herramientas de IA.
 
 Estas operaciones no están en la prueba técnica. Siguen el flujo de una banca pequeña: primero existe el cliente, después su cuenta, y solo entonces puede mover dinero.
 
 La prueba pide alta de cliente, alta de cuenta, saldo, depósito, retiro e historial. Lo de abajo se agregó encima de eso.
 
-Criterio:
+## Cómo se trabajó
 
-Esta prueba técnica se realizó usando herramientas de IA en este caso concreto CursorIDE con Grok 4.7 como prueba de que el candidato se adpata a los cambios tecnológicos de la industria; se utilizó el modo plan del agente para sustraer el paso a paso de como resolver este problema, se hicieron correcciones sobre ese plan según el criterio del entrevistado y búsquedas en la web "google" (corroborando si el plan del agente seria la mejor opcion para resolver la prueba).
+La solución se armó en Cursor, con Grok 4.7. El modo plan sirvió para ordenar el paso a paso usando hitos. Ese plan se corrigió al comprobar el SDK de .NET 10: la solución se genera como `.slnx`, no como `.sln`. Las dudas de diseño se contrastaron con la documentación y con búsquedas en la web. 
 
-Proactividad:
+Se trabajó de esta manera ya que los LLM son una herramienta, el responsable de los resultado es el desarrollador es por ello que se deben marcar los límites de lo que se quiere construir en otras palabras el alcance de un proyecto, además como desarrollador se debe tener la capacidad de analizar situaciones que los enunciados no mencionan.
+
+## Criterio
+Ejemplos de criterio aplicados en la prueba técnica:
+
+- El saldo solo cambia dentro de la cuenta. Un retiro sin fondos no guarda el movimiento.
+- Cada cliente tiene una sola cuenta. Intentarlo de nuevo responde 400 y la base lo impide con un índice único sobre el cliente.
+- Una transferencia mueve dinero entre las cuentas de dos clientes distintos. Si no hay fondos, ninguno de los dos saldos cambia.
+- Los controladores no conocen la base de datos. Un error de negocio sale como 400 o 404, sin el detalle interno de un fallo inesperado.
+
+## Proactividad:
 
 El entrevistado notó que se podían agregar más funcionalidades que van deacuerdo al flujo de una app bancaria como: 
 Consultar la informacion de todos los clientes, consultar información de un cliente por su identificador, actualizar información del cliente, mostrar información de la cuenta usando el id del cleinte, hacer transferencias entre cuentas (una cuenta por cliente) y listar las transferencias de una cuenta en específico.
-
 
 
 ## Clientes
